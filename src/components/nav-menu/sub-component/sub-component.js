@@ -1,27 +1,22 @@
 
 class SubComponent extends HTMLElement {
-  // A getter/setter for an open property.
   get open() {
     return this.hasAttribute('open');
   }
 
   set open(val) {
-    // Reflect the value of the open property as an HTML attribute.
     if (val) {
       this.setAttribute('open', '');
     } else {
       this.removeAttribute('open');
     }
-    // this.toggleDrawer();
   }
 
-  // A getter/setter for a disabled property.
   get disabled() {
     return this.hasAttribute('disabled');
   }
 
   set disabled(val) {
-    // Reflect the value of the disabled property as an HTML attribute.
     if (val) {
       this.setAttribute('disabled', '');
     } else {
@@ -36,13 +31,9 @@ class SubComponent extends HTMLElement {
   }
 
   set title(val) {
-    // Reflect the value of the open property as an HTML attribute.
     if (val) {
       this.setAttribute('title', val);
     } 
-    // else {
-    //   this.removeAttribute('message');
-    // }
   }
   get value() {
     if (this.hasAttribute('value')){
@@ -51,26 +42,20 @@ class SubComponent extends HTMLElement {
     return null;
   }
   set value(val) {
-    // Reflect the value of the open property as an HTML attribute.
     if (val) {
       this.setAttribute('value', val);
     } 
-    // else {
-    //   this.removeAttribute('message');
-    // }
   }
   static get observedAttributes() {
     return ['disabled', 'open', 'value'];
   }
 
-  // Can define constructor arguments if you wish.
   constructor(title, value) {
-    // If you define a ctor, always call super() first!
-    // This is specific to CE and required by the spec.
     super();
     let shadowRoot = this.attachShadow({mode: 'open'});
     const template = document.querySelector('#sub-component');
     const instance = template.content.cloneNode(true);
+
     shadowRoot.appendChild(instance);
     shadowRoot.querySelector("li").textContent = title;
     shadowRoot.querySelector('span').textContent = value;
@@ -100,11 +85,5 @@ class SubComponent extends HTMLElement {
     this.shadowRoot.querySelector('span').textContent = newValue;
     }
   }
-  // update(serial){
-  //   this.shadowRoot.querySelector('span').textContent = history.state[serial].count;
-  // }
-  // toggleDrawer() {
-  //   alert('mycompo!');
-  // }
 }
 customElements.define('sub-component', SubComponent);

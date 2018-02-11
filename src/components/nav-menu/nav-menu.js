@@ -42,8 +42,8 @@ class NavMenu extends HTMLElement {
     // This is specific to CE and required by the spec.
     super();
     let shadowRoot = this.attachShadow({mode: 'open'});
-    const t = document.querySelector('#nav-menu');
-    const instance = t.content.cloneNode(true);
+    const template = document.querySelector('#nav-menu');
+    const instance = template.content.cloneNode(true);
     shadowRoot.appendChild(instance);
 
     this.componentId = window.document.nextComponentSerial;
