@@ -1,0 +1,11 @@
+# node modules
+node_modules
+
+# bundled files
+dist
+
+# temporary files for bundling
+tmp
+
+# Visual Studio Code setting directory
+.vscode

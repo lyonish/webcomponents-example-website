@@ -1,0 +1,55 @@
+Arguments: 
+  /home/lyonish/.nvm/versions/node/v8.9.3/bin/node /usr/share/yarn/bin/yarn.js
+
+PATH: 
+  /home/lyonish/.nvm/versions/node/v8.9.3/bin:/home/lyonish/.avn/bin:/home/lyonish/.avn/bin:/home/lyonish/.rvm/gems/ruby-2.3.1/bin:/home/lyonish/.rvm/gems/ruby-2.3.1@global/bin:/home/lyonish/.rvm/rubies/ruby-2.3.1/bin:/home/lyonish/bin:/home/lyonish/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files (x86)/Intel/iCLS Client:/mnt/c/Program Files/Intel/iCLS Client:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/IPT:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/IPT:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/Intel/WiFi/bin:/mnt/c/Program Files/Common Files/Intel/WirelessCommon:/mnt/c/HashiCorp/Vagrant/bin:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Program Files/Git/cmd:/mnt/c/Users/Lyonish/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/Microsoft VS Code/bin:/mnt/c/Users/Lyonish/AppData/Local/atom/bin:/mnt/c/Users/Lyonish/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/Lyonish/AppData/Roaming/Dashlane/5.6.0.15520/bin/Firefox_Extension/{442718d9-475e-452a-b3e1-fb1ee16b8e9f}/components:/mnt/c/Users/Lyonish/AppData/Roaming/Dashlane/5.6.0.15520/ucrt:/snap/bin:/home/lyonish/.rvm/bin:/mnt/c/Program Files/Oracle/VirtualBox:/mnt/c/Program Files (x86)/Google/Chrome/Application:/mnt/c/Program Filse/Sublime Text 3:/home/lyonish/.rvm/bin:/home/lyonish/.rvm/bin:/mnt/c/Program Files/Oracle/VirtualBox:/mnt/c/Program Files (x86)/Google/Chrome/Application:/mnt/c/Program Files/Sublime Text 3
+
+Yarn version: 
+  1.3.2
+
+Node version: 
+  8.9.3
+
+Platform: 
+  linux x64
+
+npm manifest: 
+  {
+    "name": "webcomponent-example-website",
+    "version": "0.0.1",
+    "description": "WebComponents Example Website",
+    "main": "index.html",
+    "repository": "git@github.com:lyonish/webcomponent-example-website.git",
+    "author": "Lyo Nishimura <singing_a_song_sung_in_the_sun@gmail.com>",
+    "license": "MIT",
+    "private": false,
+    "scripts": {
+      "start": "node ./server.js",
+      "watch": "node_modules/.bin/gulp && node_modules/.bin/gulp watch",
+    },
+    "dependencies": {
+      "express": "^4.16.2"
+    },
+    "devDependencies": {
+      "gulp": "^3.9.1",
+      "gulp-concat": "^2.6.1",
+      "gulp-exec": "^3.0.1",
+      "gulp-htmlmin": "^4.0.0",
+      "gulp-minify": "^2.1.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  SyntaxError: /mnt/c/Users/Lyonish/Projects/Lyonish/webcomponents-example-website/package.json: Unexpected token } in JSON at position 448
+      at JSON.parse (<anonymous>)
+      at /usr/share/yarn/lib/cli.js:770:59
+      at Generator.next (<anonymous>)
+      at step (/usr/share/yarn/lib/cli.js:92:30)
+      at /usr/share/yarn/lib/cli.js:103:13
+      at <anonymous>

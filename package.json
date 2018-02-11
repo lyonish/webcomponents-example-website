@@ -1,0 +1,24 @@
+{
+  "name": "webcomponent-example-website",
+  "version": "0.0.1",
+  "description": "WebComponents Example Website",
+  "main": "index.html",
+  "repository": "git@github.com:lyonish/webcomponent-example-website.git",
+  "author": "Lyo Nishimura <singing_a_song_sung_in_the_sun@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node ./server.js",
+    "watch": "rm -rf ./dist/* && node_modules/.bin/gulp && node_modules/.bin/gulp watch"
+  },
+  "dependencies": {
+    "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-exec": "^3.0.1",
+    "gulp-htmlmin": "^4.0.0",
+    "gulp-minify": "^2.1.0"
+  }
+}

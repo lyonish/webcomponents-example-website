@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script> 
+// Initial Setup
+  window.document.nextComponentSerial = 0;
+  history.pushState({}, 'home', '/');
+  window.addEventListener('popstate', e => {
+      console.log('popstate111');
+      console.log(e);
+    });
+  window.addEventListener('load', e => {
+    history.pushState(history.state, 'Initial State', '/');
+  });
+</script> 
+<script src="./components/nav-menu/nav-menu.js"></script>
+<script src="./components/nav-menu/sub-component/sub-component.js"></script>
+</head>
+
+<body>
+  <templates>
+
+  <my-component></my-component>
+  <my-component2 message="asdf" disabled></my-component2>
+  
+  <nav-menu src="./store/nav-menu.json"></nav-menu>
+   
+</body>
+
+</html>
