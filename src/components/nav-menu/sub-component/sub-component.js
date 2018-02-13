@@ -63,8 +63,7 @@ class SubComponent extends HTMLElement {
     this.componentId = window.document.nextComponentSerial;
     history.state[this.componentId] = {componentName: this.nodeName};
     window.document.nextComponentSerial = this.componentId + 1;
-    console.log(this.componentId);
-    console.log(window.document.nextComponentSerial);
+
     history.state[this.componentId].count = value;
     window.addEventListener('popstate', e => {
       this.value = history.state[this.componentId].count;

@@ -14,16 +14,17 @@
     history.pushState(history.state, 'Initial State', '/');
   });
 </script> 
+<script src="./components/background-album/background-album-debug.js"></script>
+<script src="./components/background-album/background-image/background-image-debug.js"></script>
 <script src="./components/nav-menu/nav-menu.js"></script>
 <script src="./components/nav-menu/sub-component/sub-component.js"></script>
 </head>
 
 <body>
+  <!-- templates for webcomponents -->
   <templates>
 
-  <my-component></my-component>
-  <my-component2 message="asdf" disabled></my-component2>
-  
+  <background-album src="./store/background-album.json" interval=6></background-album>
   <nav-menu src="./store/nav-menu.json"></nav-menu>
    
 </body>

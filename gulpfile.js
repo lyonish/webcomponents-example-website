@@ -3,7 +3,8 @@ var gulp = require('gulp');
 var minify = require('gulp-minify'); 
 var htmlmin = require('gulp-htmlmin');
 var concat = require('gulp-concat');
-var exec = require('child_process').exec
+var exec = require('child_process').exec;
+var runSequence = require('run-sequence');
 
 gulp.task('minify javascript', function() {
   gulp.src('src/components/**/*.js')
@@ -28,12 +29,11 @@ gulp.task('minify store', function() {
 
 gulp.task('minify template tags', function() {
   return gulp.src('src/components/**/*.html')
-    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(htmlmin({collapseWhitespace: true, minifyCSS: true}))
     .pipe(gulp.dest('tmp'));
 });
  
 gulp.task('concatenate template tags', function() {
-  exec('touch ./tmp/templates.concat');
   return gulp.src('./tmp/**/*.html')
     .pipe(concat('templates.concat', {newLine: ''}))
     .pipe(gulp.dest('./tmp/', {overwrite: true}));
@@ -53,4 +53,11 @@ gulp.task('watch', function(){
   gulp.watch('./src/**', ['default']);
 });
 
-gulp.task('default', ['minify javascript', 'minify store', 'minify template tags', 'concatenate template tags', 'insert template tags']);
+gulp.task('default', function(){
+  runSequence(
+    ['minify javascript', 'minify store'],
+    'minify template tags',
+    'concatenate template tags',
+    'insert template tags'
+  );
+});

@@ -1,5 +1,4 @@
 {
-  "rows" : 5, 
   "name": ["BIOGRAPHY", "DISCOGRAPHY", "BLOG", "SUBSCRIBE", "CONTACT"],
   "value": [2,3,5,7,11]
 }
