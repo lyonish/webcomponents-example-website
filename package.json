@@ -9,7 +9,8 @@
   "private": false,
   "scripts": {
     "start": "node ./server.js",
-    "watch": "rm -rf ./dist/* && node_modules/.bin/gulp && node_modules/.bin/gulp watch"
+    "watch": "rm -rf ./dist/* && node_modules/.bin/gulp && node_modules/.bin/gulp watch",
+    "build": "rm -rf ./dist/* && node_modules/.bin/gulp build"
   },
   "dependencies": {
     "express": "^4.16.2"
