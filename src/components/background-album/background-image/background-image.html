@@ -13,13 +13,21 @@ span{
   height: 100%;
   z-index: -10;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-position: 0% 0%;
+  background-size: contain;
+  background-position-y: 72px;
   opacity: 0;
   color: transparent;
   /* transition: 2s opacity; */
   animation: imageAnimation linear infinite 0s;
 }
 
+@media screen and  (min-width:769px){
+    span {
+    background-size: cover;
+    background-position-y: unset;
+    }
+}
 </style>
 
 </template>

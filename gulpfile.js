@@ -40,7 +40,7 @@ gulp.task('minify store', function() {
 });
 
 gulp.task('minify template tags', function() {
-  return gulp.src('src/components/**/*.html')
+  return gulp.src(['src/components/**/*.html', 'src/views/*.html'])
     .pipe(htmlmin({collapseWhitespace: true, minifyCSS: true}))
     .pipe(gulp.dest('tmp'));
 });

@@ -2,32 +2,102 @@
 <html>
 
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <script> 
 // Initial Setup
   window.document.nextComponentSerial = 0;
-  history.pushState({}, 'home', '/');
-  window.addEventListener('popstate', e => {
-      console.log('popstate111');
-      console.log(e);
-    });
-  window.addEventListener('load', e => {
-    history.pushState(history.state, 'Initial State', '/');
-  });
+  history.pushState({}, 'initial empty state', window.location.pathname);
 </script> 
-<script src="./components/background-album/background-album.js"></script>
-<script src="./components/background-album/background-image/background-image.js"></script>
-<script src="./components/nav-menu/nav-menu.js"></script>
-<script src="./components/nav-menu/sub-component/sub-component.js"></script>
+<!-- https://developers.google.com/speed/docs/insights/BlockingJS?hl=ja#InlineJS -->
+<script async src="./components/background-album/background-album.js"></script>
+<script async src="./components/background-album/background-image/background-image.js"></script>
+<script async src="./components/nav-menu/nav-menu.js"></script>
+<script async src="./components/nav-menu/sub-component/sub-component.js"></script>
+<style>
+  body {
+    font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+    }
+  footer {
+    position: fixed;
+    bottom: 5%;
+    font-size: 24px;
+  }
+</style>
 </head>
 
 <body>
   <!-- templates for webcomponents -->
   <templates>
+  
+  <nav-menu src="./store/nav-menu.json">
+    <!-- slotでアイコンをつけられるようにする予定 -->
+  </nav-menu>
+    <!-- <background-album src="./store/background-album.json" interval=6></background-album> -->
 
-  <div id="main">
-    <background-album src="./store/background-album.json" interval=6></background-album>
-    <nav-menu src="./store/nav-menu.json"></nav-menu>
+  <div id="main" class="container">
   </div>
-</body>
 
+  <div id="sub" class="container">
+    
+  </div>
+
+  ISOLATEDTEXT
+
+  <div id="sub2" class="container">
+
+  </div>
+
+
+  <footer>
+   See the source code of this website on <a href="https://github.io/lyonish/webcomponents-example-website">github</a>.
+  </footer>
+
+  <script>
+      window.views = {
+      "/": {
+        main: 'home-main',
+        sub: 'home-sub'
+      },
+      "/about": {
+        main: 'about-main',
+        sub2: 'about-sub2'
+      }
+    }
+    // window.addEventListener('popstate', e => {
+    //     console.log('popstate11111');
+    //     console.log(e);
+    //   });
+    window.updateState = function(route){
+      history.pushState(history.state, 'update state', route);
+      const contents = window.views[window.location.pathname];
+  const containers = document.getElementsByClassName('container');
+  let container;
+  let template;
+  let instance;
+  let i = 0;
+  
+  while(i < containers.length){
+
+    container = containers[i];
+    template = document.getElementById(contents[container.id]);
+
+    if(contents[container.id]){
+      if (container.childElementCount == 0){
+        container.appendChild(template.content.cloneNode(true));
+      } else {
+        container.replaceChild(template.content.cloneNode(true), container.children[0]);
+      }
+    } else {
+      if(container.children[0]){
+        container.removeChild(container.children[0]);
+      }
+    }
+    i = i + 1;
+  }
+    }
+    window.addEventListener('load', e => {
+      updateState(window.location.pathname);
+    });
+  </script>
+</body>
 </html>

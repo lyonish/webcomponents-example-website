@@ -20,6 +20,13 @@ class BackgroundImage extends HTMLElement {
     return null;
   }
 
+  set src(val) {
+    if (val) {
+      this.setAttribute('src', val);
+    } 
+  }
+  
+
   get interval() {
     if (this.hasAttribute('interval')){
       return this.attributes.interval.value;
@@ -38,7 +45,8 @@ class BackgroundImage extends HTMLElement {
     this.componentId = window.document.nextComponentSerial;
     history.state[this.componentId] = {componentName: this.nodeName};
     window.document.nextComponentSerial = this.componentId + 1;
-    shadowRoot.querySelector('span').style.backgroundImage= 'url("' + url + '")';
+    this.src = url;
+    shadowRoot.querySelector('span').style.backgroundImage= 'url("' + this.src + '")';
     shadowRoot.querySelector('span').style.animationDelay = interval * order + 's';
     shadowRoot.querySelector('span').style.animationDuration = interval * total + 's';
 

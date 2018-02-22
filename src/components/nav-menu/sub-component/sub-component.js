@@ -57,7 +57,8 @@ class SubComponent extends HTMLElement {
     const instance = template.content.cloneNode(true);
 
     shadowRoot.appendChild(instance);
-    shadowRoot.querySelector("li").textContent = title;
+    this.title = title;
+    shadowRoot.querySelector("li").textContent = this.title;
     shadowRoot.querySelector('span').textContent = value;
 
     this.componentId = window.document.nextComponentSerial;
@@ -71,11 +72,10 @@ class SubComponent extends HTMLElement {
     this.addEventListener('click', e => {
       history.state[this.componentId].count = history.state[this.componentId].count + 1;
       this.value = history.state[this.componentId].count;
-      history.pushState(history.state, 'countUp', '/' );
+      history.pushState(history.state, 'countUp', window.location.pathname);
       if (this.disabled) {
         return true;
       }
-      // this.toggleDrawer();
     });
   }
   // Respond to attribute changes.

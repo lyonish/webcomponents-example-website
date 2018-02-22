@@ -1,25 +1,39 @@
-var express = require('express')
-var app = express()
+const express = require('express')
+const app = express();
+const router = express.Router();
+const fs = require('fs');
+const path = require('path');
+const index = fs.readFileSync(path.join(__dirname, 'dist/index.html'));
 
 const options = {
   "root": "./dist/"
 }
 
-app.get('/', function (req, res) {
-  res.sendFile('./index.html', options )
-})
+const port = 3013;
 
 app.get('/components/*/*.js', function (req, res) {
-  console.log(req.url);
   res.sendFile(req.url, options);
-})
+});
 
 app.get('/store/*.json', function (req, res) {
-  console.log(req.url);
   res.sendFile(req.url, options);
-})
+});
+
+app.get('/(|about)/?', function (req, res) {
+  res.sendFile('./index.html', options);
+});
+
+app.get('*', function (req, res) {
+  res.status(404).send(req.url + " doesn't exist.");
+});
 
 
-app.listen(3013, () =>{
-  console.log('listening port 3013 ...')
-})
+
+// router.get('/aaabbb', (req, res, next) => {
+//   res.sendFile('./index.html', options);
+// });
+// app.use('/', router);
+
+app.listen(port, () =>{
+  console.log('listening port ' + port + ' ...')
+});
