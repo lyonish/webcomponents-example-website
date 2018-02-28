@@ -12,15 +12,39 @@
 <script async src="./components/background-album/background-album.js"></script>
 <script async src="./components/background-album/background-image/background-image.js"></script>
 <script async src="./components/nav-menu/nav-menu.js"></script>
-<script async src="./components/nav-menu/sub-component/sub-component.js"></script>
+<script async src="./components/nav-menu/menu-piece/menu-piece.js"></script>
 <style>
   body {
     font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+    margin: 0; /* remove default */
+    background: #fdfaf9;
+    }
+    a {
+      font-weight: 500;
+      text-decoration: none;
     }
   footer {
     position: fixed;
-    bottom: 5%;
-    font-size: 24px;
+    bottom: 0;
+    padding: 6px 18px;
+    width: 100%;
+    background: linear-gradient(0deg, #fdc, #fcb 8%, #fba 50%, #fcb 80%, #fdc);
+    opacity: 0.6;
+    font-size: 18px;
+  }
+  .footer-content {
+    text-decoration: none;
+  }
+  @media screen and (min-width: 769px) {
+    footer {
+      width: 97%;
+      text-align: right;
+      background: none;
+    }
+    .footer-content {
+      background: linear-gradient(0deg, #fdfaf9, #fcb 44%, #fba 50%, #fcb 56%, #fdfaf9);
+      border-radius: 12px;
+    }
   }
 </style>
 </head>
@@ -49,7 +73,9 @@
 
 
   <footer>
-   See the source code of this website on <a href="https://github.io/lyonish/webcomponents-example-website">github</a>.
+    <span class="footer-content">
+      view on <a href="https://github.io/lyonish/webcomponents-example-website">github</a>.
+    </span>
   </footer>
 
   <script>
@@ -57,6 +83,10 @@
       "/": {
         main: 'home-main',
         sub: 'home-sub'
+      },
+      "/blog": {
+        main: 'blog-main',
+        sub: 'blog-sub'
       },
       "/about": {
         main: 'about-main',
@@ -87,8 +117,10 @@
       } else {
         container.replaceChild(template.content.cloneNode(true), container.children[0]);
       }
+      container.hidden = false;
     } else {
       if(container.children[0]){
+        container.hidden = true;
         container.removeChild(container.children[0]);
       }
     }
@@ -101,3 +133,5 @@
   </script>
 </body>
 </html>
+
+<!-- https://developers.google.com/web/fundamentals/web-components/best-practices?hl=ja -->

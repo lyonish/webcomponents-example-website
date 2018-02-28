@@ -50,16 +50,11 @@ class NavMenu extends HTMLElement {
     history.state[this.componentId] = {componentName: this.nodeName};
     window.document.nextComponentSerial = this.componentId + 1;
 
-    // Setup a click listener on <app-drawer> itself.
-    this.addEventListener('click', e => {
-      console.log('8282828');
-      // Don't toggle the drawer if it's disabled.
-      
-      if (this.disabled) {
-        return false;
-      }
-      // this.toggleDrawer();
-    });
+    // this.addEventListener('click', e => {
+    //   if (this.disabled) {
+    //     return false;
+    //   }
+    // });
   }
 
   connectedCallback() {
@@ -68,8 +63,8 @@ class NavMenu extends HTMLElement {
     fetch(this.src)
     .then(function(response) {
       return response.json().then(function(json) {
-        for (let i=0; i <json.value.length; i = i+1){
-          instance = new SubComponent(json.name[i], json.value[i]);
+        for (let i=0; i <json.name.length; i = i+1){
+          instance = new MenuPiece(json.name[i], json.route[i]);
           _shadowRoot.querySelector('ul').appendChild(instance);
       }
     });

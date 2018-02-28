@@ -3,5 +3,17 @@
 </template>
 
 <template id="home-sub">
-   <div><p> home, sub</p><a href="javascript:void(0)" onClick= "updateState('/about')">ABOUT</a></div>
+   <div id="home-sub-div">
+     <style>
+       #home-sub-div {
+         position: relative;
+         top: 240px;
+       }
+       #home-sub-div p {
+        padding: 18px;
+       }
+     </style>
+      <p> Hi, this is an example website powered by <a href="https://www.webcomponents.org/">webcomponents</a>'s core technologies such as</p>
+      <a href="javascript:void(0)" onClick= "updateState('/about')">ABOUT</a>
+    </div>
 </template>
