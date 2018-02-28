@@ -91,7 +91,7 @@ class MenuPiece extends HTMLElement {
       //   return true;
       // }
     });
-    shadowRoot.querySelector('a').addEventListener('click', (e)=> {
+    shadowRoot.querySelector('li').addEventListener('click', (e)=> {
       window.updateState(this.route);
     })
   }
