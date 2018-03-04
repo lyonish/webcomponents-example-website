@@ -9,18 +9,20 @@
   "private": false,
   "scripts": {
     "start": "node ./server.js",
-    "watch": "rm -rf ./dist/* && node_modules/.bin/gulp && node_modules/.bin/gulp watch",
-    "build": "rm -rf ./dist/* && node_modules/.bin/gulp build"
+    "dev": "rm -rf ./dist/* && node_modules/.bin/gulp && node_modules/.bin/gulp watch",
+    "build": "rm -rf ./dist/* && node_modules/.bin/gulp build",
   },
   "dependencies": {
     "express": "^4.16.2"
   },
   "devDependencies": {
+    "browser-sync": "^2.23.6",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-exec": "^3.0.1",
     "gulp-htmlmin": "^4.0.0",
     "gulp-minify": "^2.1.0",
+    "gulp-nodemon": "^2.2.1",
     "run-sequence": "^2.2.1"
   }
 }

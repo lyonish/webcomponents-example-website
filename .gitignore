@@ -9,3 +9,6 @@ tmp
 
 # Visual Studio Code setting directory
 .vscode
+
+# logfile
+yarn-error.log

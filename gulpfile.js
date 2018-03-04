@@ -5,6 +5,8 @@ const htmlmin = require('gulp-htmlmin');
 const concat = require('gulp-concat');
 const exec = require('child_process').exec;
 const runSequence = require('run-sequence'); // to run synchronously
+const browserSync = require('browser-sync').create();
+const nodemon = require('gulp-nodemon');
 
 // const NODE_ENV = process.env.NODE_ENV || 'dev';
 
@@ -61,8 +63,21 @@ gulp.task('concatenate template tags', function() {
   });
 });
 
-gulp.task('watch', function(){
-  gulp.watch('./src/**', ['default']);
+gulp.task('server', function(){
+  nodemon({
+    script: 'server.js',
+    watch: 'server.js',
+    env: {'NODE_ENV': 'development'}
+  });
+});
+
+gulp.task('browser-sync', function() {
+  browserSync.init({
+      // server: {
+      //     baseDir: "./dist/"
+      // }
+      proxy: "localhost:3013"
+  });
 });
 
 gulp.task('default', function(){
@@ -74,6 +89,23 @@ gulp.task('default', function(){
   );
 });
 
+gulp.task('dev', function(){
+  // start server and init browsersync
+  runSequence(
+    'server',
+    'browser-sync'
+  );
+  //then, start watching with live reload
+  gulp.watch('./src/**', function(){
+    console.log('Changes detected, Browser-Sync-ing..... hut two three four^v^');
+    runSequence(
+      'default'
+    );
+    browserSync.reload();
+  });
+});
+
+// prod build with minifying js
 gulp.task('bulid', function(){
   runSequence(
     ['minify javascript', 'minify store'],
