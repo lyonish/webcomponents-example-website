@@ -15,13 +15,28 @@
 <script async src="./components/nav-menu/menu-piece/menu-piece.js"></script>
 <style>
   body {
-    font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+    display: grid;
+    width: 100%;
+    height: 100%;
     margin: 0; /* remove default */
+    font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
     background: #fdfaf9;
+    }
+    .\/{
+      grid-template-columns: 1fr 1fr 6fr;
+    }
+    .\/blog{
+      grid-template-columns: repeat(3, 1fr 2fr);
+    }
+    .\/about{
+      grid-template-columns: repeat(3, 3fr 2fr);
     }
     a {
       font-weight: 500;
       text-decoration: none;
+    }
+    .wc-wrapper {
+      /* display:  grid; */
     }
   footer {
     position: fixed;
@@ -38,7 +53,7 @@
   @media screen and (min-width: 769px) {
     footer {
       width: 97%;
-      text-align: right;
+      text-align: left;
       background: none;
     }
     .footer-content {
@@ -50,7 +65,7 @@
 </style>
 </head>
 
-<body>
+<body class>
   <!-- templates for webcomponents -->
   <templates>
   
@@ -59,16 +74,16 @@
   </nav-menu>
     <!-- <background-album src="./store/background-album.json" interval=6></background-album> -->
 
-  <div id="main" class="container">
+  <div id="main" class="wc-wrapper">
   </div>
 
-  <div id="sub" class="container">
+  <div id="sub" class="wc-wrapper">
     
   </div>
 
   ISOLATEDTEXT
 
-  <div id="sub2" class="container">
+  <div id="sub2" class="wc-wrapper">
 
   </div>
 
@@ -100,29 +115,31 @@
     //   });
     window.updateState = function(route){
       history.pushState(history.state, 'update state', route);
+      document.body.className = '';
+      document.body.classList.add(route);
       const contents = window.views[window.location.pathname];
-  const containers = document.getElementsByClassName('container');
-  let container;
+  const wrappers = document.getElementsByClassName('wc-wrapper');
+  let wrapper;
   let template;
   let instance;
   let i = 0;
   
-  while(i < containers.length){
+  while(i < wrappers.length){
 
-    container = containers[i];
-    template = document.getElementById(contents[container.id]);
+    wrapper = wrappers[i];
+    template = document.getElementById(contents[wrapper.id]);
 
-    if(contents[container.id]){
-      if (container.childElementCount == 0){
-        container.appendChild(template.content.cloneNode(true));
+    if(contents[wrapper.id]){
+      if (wrapper.childElementCount == 0){
+        wrapper.appendChild(template.content.cloneNode(true));
       } else {
-        container.replaceChild(template.content.cloneNode(true), container.children[0]);
+        wrapper.replaceChild(template.content.cloneNode(true), wrapper.children[0]);
       }
-      container.hidden = false;
+      wrapper.hidden = false;
     } else {
-      if(container.children[0]){
-        container.hidden = true;
-        container.removeChild(container.children[0]);
+      if(wrapper.children[0]){
+        wrapper.hidden = true;
+        wrapper.removeChild(wrapper.children[0]);
       }
     }
     i = i + 1;
