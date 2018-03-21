@@ -13,30 +13,18 @@
 <script async src="./components/background-album/background-image/background-image.js"></script>
 <script async src="./components/nav-menu/nav-menu.js"></script>
 <script async src="./components/nav-menu/menu-piece/menu-piece.js"></script>
+<script async src="./routes.js"></script>
 <style>
   body {
-    display: grid;
     width: 100%;
     height: 100%;
     margin: 0; /* remove default */
     font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
     background: #fdfaf9;
     }
-    .\/{
-      grid-template-columns: 1fr 1fr 6fr;
-    }
-    .\/blog{
-      grid-template-columns: repeat(3, 1fr 2fr);
-    }
-    .\/about{
-      grid-template-columns: repeat(3, 3fr 2fr);
-    }
     a {
       font-weight: 500;
       text-decoration: none;
-    }
-    .wc-wrapper {
-      /* display:  grid; */
     }
   footer {
     position: fixed;
@@ -65,7 +53,7 @@
 </style>
 </head>
 
-<body class>
+<body>
   <!-- templates for webcomponents -->
   <templates>
   
@@ -74,76 +62,35 @@
   </nav-menu>
     <!-- <background-album src="./store/background-album.json" interval=6></background-album> -->
 
-  <div id="main" class="wc-wrapper">
+  <div id="main">
   </div>
 
-  <div id="sub" class="wc-wrapper">
-    
-  </div>
-
-  ISOLATEDTEXT
-
-  <div id="sub2" class="wc-wrapper">
-
-  </div>
-
-
-  <footer>
+   <footer>
     <span class="footer-content">
       view on <a href="https://github.io/lyonish/webcomponents-example-website">github</a>.
     </span>
   </footer>
 
   <script>
-      window.views = {
-      "/": {
-        main: 'home-main',
-        sub: 'home-sub'
-      },
-      "/blog": {
-        main: 'blog-main',
-        sub: 'blog-sub'
-      },
-      "/about": {
-        main: 'about-main',
-        sub2: 'about-sub2'
-      }
-    }
-    // window.addEventListener('popstate', e => {
-    //     console.log('popstate11111');
-    //     console.log(e);
-    //   });
     window.updateState = function(route){
-      history.pushState(history.state, 'update state', route);
-      document.body.className = '';
-      document.body.classList.add(route);
-      const contents = window.views[window.location.pathname];
-  const wrappers = document.getElementsByClassName('wc-wrapper');
-  let wrapper;
-  let template;
-  let instance;
-  let i = 0;
-  
-  while(i < wrappers.length){
+      history.pushState(history.state, 'updateState', route);
 
-    wrapper = wrappers[i];
-    template = document.getElementById(contents[wrapper.id]);
-
-    if(contents[wrapper.id]){
-      if (wrapper.childElementCount == 0){
-        wrapper.appendChild(template.content.cloneNode(true));
-      } else {
-        wrapper.replaceChild(template.content.cloneNode(true), wrapper.children[0]);
+      const main = document.getElementById('main');
+      const routeIndex = routeNames.findIndex(function(element, index, array){ 
+        return !!route.match(element);
+      });
+      if(routeIndex + 1) {
+        const template = document.getElementById(window.routes[routeIndex].route);
+        const instance = template.content.cloneNode(true);
+        let oldChild;
+        if(main.childElementCount === 0) {
+          main.appendChild(instance);
+        }else{
+          oldChlid = main.replaceChild(instance, main.children[0]);
+        }
+      }else{
+        alert('wrong route');
       }
-      wrapper.hidden = false;
-    } else {
-      if(wrapper.children[0]){
-        wrapper.hidden = true;
-        wrapper.removeChild(wrapper.children[0]);
-      }
-    }
-    i = i + 1;
-  }
     }
     window.addEventListener('load', e => {
       updateState(window.location.pathname);

@@ -11,7 +11,7 @@ const options = {
 
 const port = 3013;
 
-app.get('/components/*/*.js', function (req, res) {
+app.get('/***.js', function (req, res) {
   res.sendFile(req.url, options);
 });
 

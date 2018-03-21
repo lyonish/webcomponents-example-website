@@ -11,12 +11,12 @@ const nodemon = require('gulp-nodemon');
 // const NODE_ENV = process.env.NODE_ENV || 'dev';
 
 gulp.task('dest javascript', function() {
-  gulp.src('src/components/**/*.js')
-    .pipe(gulp.dest('dist/components'))
+  gulp.src('src/**/*.js')
+    .pipe(gulp.dest('dist'))
 });
 
 gulp.task('minify javascript', function() {
-  gulp.src('src/components/**/*.js')
+  gulp.src('src/**/*.js')
     .pipe(minify({
       ext:{
             src:'-debug.js',
@@ -25,7 +25,7 @@ gulp.task('minify javascript', function() {
       noSource: true
      })
     )
-    .pipe(gulp.dest('dist/components'))
+    .pipe(gulp.dest('dist'))
 });
 
 gulp.task('minify store', function() {
