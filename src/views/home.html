@@ -1,16 +1,12 @@
 <template id="home">
-  <background-album src="./store/background-album.json" interval=6></background-album>
-  <div id="home-sub-div">
-     <p> Hi, this is an example website powered by <a href="https://www.webcomponents.org/">webcomponents</a>'s core technologies such as</p>
-     <a href="javascript:void(0)" onClick= "updateState('/about')">ABOUT</a>
-   </div>
-   <style>
-    #home-sub-div {
-      position: relative;
-      top: 240px;
-    }
-    #home-sub-div p {
-     padding: 18px;
-    }
-  </style>
+  <div>
+    <background-album src="./store/background-album.json" interval=6></background-album>
+    <div id="home-sub-div">
+      <p> Hi, this is an example website powered by <a href="https://www.webcomponents.org/">webcomponents</a></p>
+      <a href="javascript:void(0)" onClick= "updateState('/about')">ABOUT</a>
+    </div>
+    <style>
+
+    </style>
+  </div>
 </template>
