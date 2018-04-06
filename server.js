@@ -19,6 +19,10 @@ app.get('/store/*.json', function (req, res) {
   res.sendFile(req.url, options);
 });
 
+app.get('/assets/**', function(req, res) {
+  res.sendFile(req.url, options);
+});
+
 app.get('/(|about|blog)/?', function (req, res) {
   res.sendFile('./index.html', options);
 });

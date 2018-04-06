@@ -1,0 +1,28 @@
+<template id="home-view">
+  <div class="home-wrap">
+    <background-album src="./store/background-album.json" interval=6></background-album>
+      <h1> Hi, this is an example website powered by <a href="https://www.webcomponents.org/">webcomponents</a></h1>
+      <!-- <a href="javascript:void(0)" onClick= "updateState('/about')">ABOUT</a> -->
+  </div>
+  <style>
+      .home-wrap {
+        display: grid;
+        grid-template-columns: 1;
+        grid-template-rows: 2;
+        margin: 240px 20px 180px;
+        padding: 0;
+      }
+      h1 {
+        font-size: 20px;
+      }
+      @media screen and (min-width: 769px){
+        .home-wrap {
+          padding: 60px 120px;
+          margin: 0px;
+        }
+        h1 {
+          font-size: 32px;
+        }
+      } 
+    </style>
+</template>

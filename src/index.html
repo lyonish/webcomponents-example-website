@@ -15,6 +15,9 @@
 <script async src="./components/nav-menu/menu-piece/menu-piece.js"></script>
 <script async src="./components/blog-container/blog-container.js"></script>
 <script async src="./components/blog-container/blog-article/blog-article.js"></script>
+<script async src="./views/about/about.js"></script>
+<script async src="./views/home/home.js"></script>
+<script async src="./views/blog/blog.js"></script>
 <script async src="./routes.js"></script>
 <style>
   body {
@@ -29,26 +32,33 @@
       text-decoration: none;
     }
   footer {
-    position: fixed;
     bottom: 0;
-    padding: 6px 18px;
+    padding: 20px 0px;
     width: 100%;
-    background: linear-gradient(0deg, #fdc, #fcb 8%, #fba 50%, #fcb 80%, #fdc);
+    /* background: linear-gradient(0deg, #fdc, #fcb 8%, #fba 50%, #fcb 80%, #fdc); */
     opacity: 0.6;
+    text-align: center;
     font-size: 18px;
   }
   .footer-content {
     text-decoration: none;
   }
+  .footer-icon {
+    width: 16px;
+    height: 16px;
+  }
   @media screen and (min-width: 769px) {
     footer {
+      position: fixed;
       width: 97%;
+      margin: 0px 0px 60px 60px;
+      padding: 6px 18px;
       text-align: left;
+      font-size: 13px;
       background: none;
     }
     .footer-content {
-      background: radial-gradient(rgba(255,221,210,1.0), rgba(255,220,210,0));
-      border-radius: 12px;
+      border-radius: 6px;
       box-shadow: 0 1px 1px rgba(0,0,0,0.2)
     }
   }
@@ -69,8 +79,12 @@
 
    <footer>
     <span class="footer-content">
-      view on <a href="https://github.io/lyonish/webcomponents-example-website">github</a>.
+      Code on <a href="https://github.io/lyonish/webcomponents-example-website">GitHub<img src="/assets/images/GitHub-Mark-32px.png" class="footer-icon"></a>.
     </span>
+    <br />
+    <span class="footer-content">
+    Free Pictures: <a href="https://www.pakutaso.com/">PAKUTASO</a>
+  </span>
   </footer>
 
   <script>
@@ -82,8 +96,8 @@
         return !!route.match(element);
       });
       if(routeIndex + 1) {
-        const template = document.getElementById(window.routes[routeIndex].route);
-        const instance = template.content.cloneNode(true);
+
+        const instance = document.createElement(`${window.routes[routeIndex].route}-view`);
         let oldChild;
         if(main.childElementCount === 0) {
           main.appendChild(instance);

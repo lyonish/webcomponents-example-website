@@ -1,8 +1,19 @@
 <template id="blog-article">
   <article>
     <h3></h3>
-    <span class="author"></span>
-    <span class="postdate"></span>
+    <em><span class="author"></span>
+    <span class="postdate"></span></em>
     <div class="content"></div>
   </article>
+  <style>
+  article {
+    box-shadow: 0 2px 2px rgba(0,0,0,.29);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 36px;
+  }
+  .content {
+    margin: 12px 0px;
+  }
+  </style>
 </template>

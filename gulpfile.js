@@ -42,7 +42,7 @@ gulp.task('minify store', function() {
 });
 
 gulp.task('minify template tags', function() {
-  return gulp.src(['src/components/**/*.html', 'src/views/*.html'])
+  return gulp.src(['src/components/**/*.html', 'src/views/**/*.html'])
     .pipe(htmlmin({collapseWhitespace: true, minifyCSS: true}))
     .pipe(gulp.dest('tmp'));
 });
@@ -61,6 +61,11 @@ gulp.task('concatenate template tags', function() {
     console.log(stderr);
     console.log(insertion);
   });
+});
+
+gulp.task('assets', function(){
+  return gulp.src('src/assets/**')
+  .pipe(gulp.dest('dist/assets'));
 });
 
 gulp.task('server', function(){
@@ -82,7 +87,7 @@ gulp.task('browser-sync', function() {
 
 gulp.task('default', function(){
   runSequence(
-    ['dest javascript', 'minify store'],
+    ['dest javascript', 'minify store', 'assets'],
     'minify template tags',
     'concatenate template tags',
     'insert template tags'
@@ -108,7 +113,7 @@ gulp.task('dev', function(){
 // prod build with minifying js
 gulp.task('bulid', function(){
   runSequence(
-    ['minify javascript', 'minify store'],
+    ['minify javascript', 'minify store', 'assets'],
     'minify template tags',
     'concatenate template tags',
     'insert template tags'

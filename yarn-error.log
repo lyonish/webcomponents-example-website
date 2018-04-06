@@ -2,7 +2,7 @@ Arguments:
   /home/lyonish/.nvm/versions/node/v8.9.3/bin/node /usr/share/yarn/bin/yarn.js run dev
 
 PATH: 
-  /home/lyonish/.nvm/versions/node/v8.9.3/bin:/home/lyonish/.avn/bin:/home/lyonish/.avn/bin:/home/lyonish/.rvm/gems/ruby-2.3.1/bin:/home/lyonish/.rvm/gems/ruby-2.3.1@global/bin:/home/lyonish/.rvm/rubies/ruby-2.3.1/bin:/home/lyonish/bin:/home/lyonish/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files (x86)/Intel/iCLS Client:/mnt/c/Program Files/Intel/iCLS Client:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/IPT:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/IPT:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/Intel/WiFi/bin:/mnt/c/Program Files/Common Files/Intel/WirelessCommon:/mnt/c/HashiCorp/Vagrant/bin:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Program Files/Git/cmd:/mnt/c/Users/Lyonish/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/Microsoft VS Code/bin:/mnt/c/Users/Lyonish/AppData/Local/atom/bin:/mnt/c/Users/Lyonish/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/Lyonish/AppData/Roaming/Dashlane/5.7.0.16178/bin/Firefox_Extension/{442718d9-475e-452a-b3e1-fb1ee16b8e9f}/components:/mnt/c/Users/Lyonish/AppData/Roaming/Dashlane/5.7.0.16178/ucrt:/snap/bin:/home/lyonish/.rvm/bin:/mnt/c/Program Files/Oracle/VirtualBox:/mnt/c/Program Files (x86)/Google/Chrome/Application:/mnt/c/Program Filse/Sublime Text 3:/home/lyonish/.rvm/bin:/home/lyonish/.rvm/bin:/mnt/c/Program Files/Oracle/VirtualBox:/mnt/c/Program Files (x86)/Google/Chrome/Application:/mnt/c/Program Files/Sublime Text 3
+  /home/lyonish/.nvm/versions/node/v8.9.3/bin:/home/lyonish/.avn/bin:/home/lyonish/.avn/bin:/home/lyonish/.rvm/gems/ruby-2.3.1/bin:/home/lyonish/.rvm/gems/ruby-2.3.1@global/bin:/home/lyonish/.rvm/rubies/ruby-2.3.1/bin:/home/lyonish/bin:/home/lyonish/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files (x86)/Intel/iCLS Client:/mnt/c/Program Files/Intel/iCLS Client:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/IPT:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/IPT:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/Intel/WiFi/bin:/mnt/c/Program Files/Common Files/Intel/WirelessCommon:/mnt/c/HashiCorp/Vagrant/bin:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Program Files/Git/cmd:/mnt/c/Users/Lyonish/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/Microsoft VS Code/bin:/mnt/c/Users/Lyonish/AppData/Local/atom/bin:/mnt/c/Users/Lyonish/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/Lyonish/AppData/Roaming/Dashlane/5.10.0.18444/bin/Firefox_Extension/{442718d9-475e-452a-b3e1-fb1ee16b8e9f}/components:/mnt/c/Users/Lyonish/AppData/Roaming/Dashlane/5.10.0.18444/ucrt:/snap/bin:/home/lyonish/.rvm/bin:/mnt/c/Program Files/Oracle/VirtualBox:/mnt/c/Program Files (x86)/Google/Chrome/Application:/mnt/c/Program Filse/Sublime Text 3:/home/lyonish/.rvm/bin:/home/lyonish/.rvm/bin:/mnt/c/Program Files/Oracle/VirtualBox:/mnt/c/Program Files (x86)/Google/Chrome/Application:/mnt/c/Program Files/Sublime Text 3
 
 Yarn version: 
   1.5.1
@@ -25,7 +25,7 @@ npm manifest:
     "private": false,
     "scripts": {
       "start": "node ./server.js",
-      "dev": "rm -rf ./dist/* && node_modules/.bin/gulp && node_modules/.bin/gulp watch",
+      "dev": "rm -rf ./dist/* && node_modules/.bin/gulp && node_modules/.bin/gulp dev",
       "build": "rm -rf ./dist/* && node_modules/.bin/gulp build"
     },
     "dependencies": {
@@ -4295,7 +4295,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c rm -rf ./dist/* && node_modules/.bin/gulp && node_modules/.bin/gulp watch
+  Arguments: -c rm -rf ./dist/* && node_modules/.bin/gulp && node_modules/.bin/gulp dev
   Directory: /mnt/c/Users/Lyonish/Projects/Lyonish/webcomponents-example-website
   Output:
   
