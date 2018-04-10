@@ -4,14 +4,15 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <script> 
+  // component ID generator, before any component creation
   function* idGenerator() {
     let index = 0;
     while(true)
       yield index++;
   }
   const componentIdGenerator = idGenerator();
-// Initial Setup
-  // window.document.nextComponentSerial = getComponentId.next().value;
+
+  // need initial empty state object
   history.replaceState({}, 'initial empty state', window.location.pathname);
 </script> 
 <!-- https://developers.google.com/speed/docs/insights/BlockingJS?hl=ja#InlineJS -->
@@ -26,6 +27,7 @@
 <script async src="./views/blog/blog.js"></script>
 <script async src="./routes.js"></script>
 <style>
+  /* keep this much of page-level style inline  */
   body {
     width: 100%;
     height: 100%;
@@ -72,18 +74,17 @@
     }
   }
 </style>
-<!-- styles can't affect inside -->
+<!-- styles can't affect inside ...? -->
 <!-- https://www.smashingmagazine.com/2016/12/styling-web-components-using-a-shared-style-sheet/ -->
 </head>
 
 <body>
-  <!-- templates for webcomponents -->
+  <!-- templates for webcomponents. this will be replaced with all <template id="..."> -->
   <templates>
   
   <nav-menu src="./store/nav-menu.json">
-    <!-- slotでアイコンをつけられるようにする予定 -->
+    <!-- some icon slot..? -->
   </nav-menu>
-    <!-- <background-album src="./store/background-album.json" interval=6></background-album> -->
 
   <div id="main">
   </div>
@@ -99,58 +100,42 @@
   </footer>
 
   <script>
-        let visitedViews = {};
-
+    // state and DOM object change
+    let visitedViews = {};
     window.updateState = function(newRoute, isPopstate){
       isPopstate = isPopstate ? isPopstate : false;
-      // if(typeof prevRoute !== 'undefined') {console.log('prevRoute :: ' + prevRoute); const oldRoute = prevRoute;}
       const oldRoute = window.prevRoute ? window.prevRoute : window.location.pathname ;
-      // if(typeof newRoute == 'undefined') {
-        // newRoute = oldRoute;
-      // }
-      // const newRoute = route;
-      console.log(newRoute + ' ---- ' + oldRoute)
-      if(!isPopstate){ 
-      if(newRoute == oldRoute){
-        console.log('replace');
-        history.replaceState(history.state, 'updateState', newRoute); 
-      }else{
-        console.log('push');
-        history.pushState(history.state, 'updateState', newRoute);
-     }
-}
+      if(!isPopstate){ // don't edit state upon back/forward
+        if(newRoute == oldRoute){
+          history.replaceState(history.state, 'updateState', newRoute); 
+        }else{
+          history.pushState(history.state, 'updateState', newRoute);
+        }
+      }
      const main = document.getElementById('main');
-      const routeIndex = routeNames.findIndex(function(element, index, array){ 
+     const routeIndex = routeNames.findIndex(function(element, index, array){ 
         return !!newRoute.match(element);
       });
-      if(routeIndex + 1) {
-        const instance = visitedViews[newRoute] ? visitedViews[newRoute] : document.createElement(`${window.routes[routeIndex].route}-view`);
-        // let oldChild;
+     if(routeIndex + 1) { // +1 to avoid 0(==false)
+       const instance = visitedViews[newRoute] ? visitedViews[newRoute] : document.createElement(`${window.routes[routeIndex].route}-view`);
         if(main.childElementCount === 0) {
+          //on initial rendering, there's no element inside main
           main.appendChild(instance);
         }else{
-          console.log(oldRoute + ' -> ' + newRoute);
-visitedViews[oldRoute] = main.replaceChild(instance, main.children[0]);
-
-          // debugger;
-          // visitedViews[route] = oldChild
-          console.log(visitedViews);
+          visitedViews[oldRoute] = main.replaceChild(instance, main.children[0]);
         }
       }else{
         alert('wrong route');
       }
+      // to keep where is the previous page.(popstate only has the path which the user is going to, also document.referrer can't help)
       window.prevRoute = newRoute;
-      console.log('prevRoute:::: ' + window.prevRoute);
     }
 
     window.addEventListener('load', e => {
+      //initial component attachment
       updateState(window.location.pathname);
     });
     window.addEventListener('popstate', e => {
-      console.log(e);
-      // console.log('e.target.location.pathname ' + e.target.location.pathname)
-      // console.log('document.referrer ' + document.referrer)
-    //  updateState(e.target.location.pathname);
      updateState(e.target.location.pathname, true);
     });
   </script>
