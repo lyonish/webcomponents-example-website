@@ -1,6 +1,5 @@
 
 class NavMenu extends HTMLElement {
-  // A getter/setter for an open property.
   get open() {
     return this.hasAttribute('open');
   }
@@ -12,21 +11,6 @@ class NavMenu extends HTMLElement {
     } else {
       this.removeAttribute('open');
     }
-    // this.toggleDrawer();
-  }
-
-  // A getter/setter for a disabled property.
-  get disabled() {
-    return this.hasAttribute('disabled');
-  }
-
-  set disabled(val) {
-    // Reflect the value of the disabled property as an HTML attribute.
-    if (val) {
-      this.setAttribute('disabled', '');
-    } else {
-      this.removeAttribute('disabled');
-    }
   }
 
   get src() {
@@ -36,11 +20,9 @@ class NavMenu extends HTMLElement {
     return null;
   }
 
-  // Can define constructor arguments if you wish.
   constructor() {
-    // If you define a ctor, always call super() first!
-    // This is specific to CE and required by the spec.
     super();
+    
     let shadowRoot = this.attachShadow({mode: 'open'});
     const template = document.querySelector('#nav-menu');
     const instance = template.content.cloneNode(true);
@@ -48,13 +30,6 @@ class NavMenu extends HTMLElement {
 
     this.componentId = componentIdGenerator.next().value;;
     history.state[this.componentId] = {componentName: this.nodeName};
-    ;
-
-    // this.addEventListener('click', e => {
-    //   if (this.disabled) {
-    //     return false;
-    //   }
-    // });
   }
 
   connectedCallback() {
@@ -66,20 +41,16 @@ class NavMenu extends HTMLElement {
         for (let i=0; i <json.name.length; i = i+1){
           instance = new MenuPiece(json.name[i], json.route[i]);
           _shadowRoot.querySelector('ul').appendChild(instance);
-      }
+        }
+      });
     });
-  });
-}
+  }
 
-  // Respond to attribute changes.
   attributeChangedCallback(attr, oldValue, newValue) {
     if (attr == 'src') {
       console.log('nav-menu  -  attributeChangedCallback')
     }
   }
-
-  // toggleDrawer() {
-  //   alert('mycompo!');
-  // }
 }
+
 customElements.define('nav-menu', NavMenu);

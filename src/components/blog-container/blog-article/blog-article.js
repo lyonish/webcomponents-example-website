@@ -1,4 +1,3 @@
-
 class BlogArticle extends HTMLElement {
   get open() {
     if (this.hasAttribute('open')){
@@ -34,11 +33,15 @@ class BlogArticle extends HTMLElement {
 
   constructor(data) {
     super();
+    
     let shadowRoot = this.attachShadow({mode: 'open'});
     const template = document.querySelector('#blog-article');
     const instance = template.content.cloneNode(true);
-
     shadowRoot.appendChild(instance);
+
+    this.componentId = componentIdGenerator.next().value;;
+    history.state[this.componentId] = {componentName: this.nodeName, open: this.open};
+
     this.title = data.title;
     this.postDate = data.postDate;
     this.author = data.author;
@@ -49,11 +52,6 @@ class BlogArticle extends HTMLElement {
     shadowRoot.querySelector(".author").textContent = this.author;
     shadowRoot.querySelector(".content").textContent = this.content;
 
-    this.componentId = componentIdGenerator.next().value;;
-    history.state[this.componentId] = {componentName: this.nodeName, open: this.open};
-    ;
-
-    // history.state[this.componentId].count = value;
     window.addEventListener('popstate', e => {
       if(history.state[this.componentId]){
         if(history.state[this.componentId].open == 'true'){ history.state[this.componentId].open = true; }
@@ -64,8 +62,6 @@ class BlogArticle extends HTMLElement {
     this.shadowRoot.querySelector('.expander').addEventListener('click', e => {
       this.toggleOpen();
     });
-    // shadowRoot.querySelector('li').addEventListener('click', (e)=> {
-    // })
   }
   
   toggleOpen(){
@@ -75,10 +71,10 @@ class BlogArticle extends HTMLElement {
     }else {
     this.open = true;
     this.shadowRoot.querySelector('.expander > a').textContent = 'fold';
-  }
+    }
     history.state[this.componentId].open = this.open;
   }
-  // Respond to attribute changes.
+
   attributeChangedCallback(attr, oldValue, newValue) {
     if (attr == 'open') {
       if(newValue == 'true') {

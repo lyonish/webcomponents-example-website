@@ -1,18 +1,5 @@
 
 class BackgroundImage extends HTMLElement {
-  // A getter/setter for a disabled property.
-  get disabled() {
-    return this.hasAttribute('disabled');
-  }
-  set disabled(val) {
-    // Reflect the value of the disabled property as an HTML attribute.
-    if (val) {
-      this.setAttribute('disabled', '');
-    } else {
-      this.removeAttribute('disabled');
-    }
-  }
-
   get src() {
     if (this.hasAttribute('src')){
       return this.attributes.src.value;
@@ -26,7 +13,6 @@ class BackgroundImage extends HTMLElement {
     } 
   }
   
-
   get interval() {
     if (this.hasAttribute('interval')){
       return this.attributes.interval.value;
@@ -44,7 +30,7 @@ class BackgroundImage extends HTMLElement {
 
     this.componentId = componentIdGenerator.next().value;;
     history.state[this.componentId] = {componentName: this.nodeName};
-    ;
+
     this.src = url;
     shadowRoot.querySelector('span').style.backgroundImage= 'url("' + this.src + '")';
     shadowRoot.querySelector('span').style.animationDelay = interval * order + 's';
@@ -63,37 +49,8 @@ class BackgroundImage extends HTMLElement {
       100% { opacity: 0 }\
      }`
     styletag.innerHTML = keyframes;
-    shadowRoot.appendChild(styletag)
-
-    // Setup a click listener on <app-drawer> itself.
-    this.addEventListener('click', e => {
-      // Don't toggle the drawer if it's disabled.
-      
-      if (this.disabled) {
-        return false;
-      }
-      // this.toggleDrawer();
-    });
+    shadowRoot.appendChild(styletag);
   }
-
-  connectedCallback() {
-    const  _shadowRoot = this.shadowRoot;
-    // fetch(this.src)
-    // .then(function(response) {
-    //   return response.json().then(function(json) {
-    //     debugger;
-        
-        // _shadowRoot.querySelector('img').src = ;
-    // });
-  // });
 }
 
-  // Respond to attribute changes.
-  attributeChangedCallback(attr, oldValue, newValue) {
-    if (attr == 'src') {
-      console.log('background-image  -  attributeChangedCallback')
-    }
-  }
-
-}
 customElements.define('background-image', BackgroundImage);
