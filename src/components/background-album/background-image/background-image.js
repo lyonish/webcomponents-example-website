@@ -42,9 +42,9 @@ class BackgroundImage extends HTMLElement {
     const instance = template.content.cloneNode(true);
     shadowRoot.appendChild(instance);
 
-    this.componentId = window.document.nextComponentSerial;
+    this.componentId = componentIdGenerator.next().value;;
     history.state[this.componentId] = {componentName: this.nodeName};
-    window.document.nextComponentSerial = this.componentId + 1;
+    ;
     this.src = url;
     shadowRoot.querySelector('span').style.backgroundImage= 'url("' + this.src + '")';
     shadowRoot.querySelector('span').style.animationDelay = interval * order + 's';

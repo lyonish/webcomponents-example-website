@@ -75,9 +75,9 @@ class MenuPiece extends HTMLElement {
     // debugger;
     // shadowRoot.querySelector('a').route = route;
 
-    this.componentId = window.document.nextComponentSerial;
+    this.componentId = componentIdGenerator.next().value;;
     history.state[this.componentId] = {componentName: this.nodeName};
-    window.document.nextComponentSerial = this.componentId + 1;
+    ;
 
     // history.state[this.componentId].count = value;
     window.addEventListener('popstate', e => {

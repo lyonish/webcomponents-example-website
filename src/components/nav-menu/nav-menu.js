@@ -46,9 +46,9 @@ class NavMenu extends HTMLElement {
     const instance = template.content.cloneNode(true);
     shadowRoot.appendChild(instance);
 
-    this.componentId = window.document.nextComponentSerial;
+    this.componentId = componentIdGenerator.next().value;;
     history.state[this.componentId] = {componentName: this.nodeName};
-    window.document.nextComponentSerial = this.componentId + 1;
+    ;
 
     // this.addEventListener('click', e => {
     //   if (this.disabled) {

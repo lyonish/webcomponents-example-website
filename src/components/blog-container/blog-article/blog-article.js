@@ -34,7 +34,6 @@ class BlogArticle extends HTMLElement {
 
   constructor(data) {
     super();
-    // console.log('blog article constructor');
     let shadowRoot = this.attachShadow({mode: 'open'});
     const template = document.querySelector('#blog-article');
     const instance = template.content.cloneNode(true);
@@ -50,9 +49,9 @@ class BlogArticle extends HTMLElement {
     shadowRoot.querySelector(".author").textContent = this.author;
     shadowRoot.querySelector(".content").textContent = this.content;
 
-    this.componentId = window.document.nextComponentSerial;
+    this.componentId = componentIdGenerator.next().value;;
     history.state[this.componentId] = {componentName: this.nodeName, open: this.open};
-    window.document.nextComponentSerial = this.componentId + 1;
+    ;
 
     // history.state[this.componentId].count = value;
     window.addEventListener('popstate', e => {
