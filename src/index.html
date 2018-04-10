@@ -6,7 +6,7 @@
 <script> 
 // Initial Setup
   window.document.nextComponentSerial = 0;
-  history.pushState({}, 'initial empty state', window.location.pathname);
+  history.replaceState({}, 'initial empty state', window.location.pathname);
 </script> 
 <!-- https://developers.google.com/speed/docs/insights/BlockingJS?hl=ja#InlineJS -->
 <script async src="./components/background-album/background-album.js"></script>
@@ -63,6 +63,8 @@
     }
   }
 </style>
+<!-- styles can't affect inside -->
+<!-- https://www.smashingmagazine.com/2016/12/styling-web-components-using-a-shared-style-sheet/ -->
 </head>
 
 <body>
@@ -88,28 +90,59 @@
   </footer>
 
   <script>
-    window.updateState = function(route){
-      history.pushState(history.state, 'updateState', route);
+        let visitedViews = {};
 
-      const main = document.getElementById('main');
+    window.updateState = function(newRoute, isPopstate){
+      isPopstate = isPopstate ? isPopstate : false;
+      // if(typeof prevRoute !== 'undefined') {console.log('prevRoute :: ' + prevRoute); const oldRoute = prevRoute;}
+      const oldRoute = window.prevRoute ? window.prevRoute : window.location.pathname ;
+      // if(typeof newRoute == 'undefined') {
+        // newRoute = oldRoute;
+      // }
+      // const newRoute = route;
+      console.log(newRoute + ' ---- ' + oldRoute)
+      if(!isPopstate){ 
+      if(newRoute == oldRoute){
+        console.log('replace');
+        history.replaceState(history.state, 'updateState', newRoute); 
+      }else{
+        console.log('push');
+        history.pushState(history.state, 'updateState', newRoute);
+     }
+}
+     const main = document.getElementById('main');
       const routeIndex = routeNames.findIndex(function(element, index, array){ 
-        return !!route.match(element);
+        return !!newRoute.match(element);
       });
       if(routeIndex + 1) {
-
-        const instance = document.createElement(`${window.routes[routeIndex].route}-view`);
-        let oldChild;
+        const instance = visitedViews[newRoute] ? visitedViews[newRoute] : document.createElement(`${window.routes[routeIndex].route}-view`);
+        // let oldChild;
         if(main.childElementCount === 0) {
           main.appendChild(instance);
         }else{
-          oldChlid = main.replaceChild(instance, main.children[0]);
+          console.log(oldRoute + ' -> ' + newRoute);
+visitedViews[oldRoute] = main.replaceChild(instance, main.children[0]);
+
+          // debugger;
+          // visitedViews[route] = oldChild
+          console.log(visitedViews);
         }
       }else{
         alert('wrong route');
       }
+      window.prevRoute = newRoute;
+      console.log('prevRoute:::: ' + window.prevRoute);
     }
+
     window.addEventListener('load', e => {
       updateState(window.location.pathname);
+    });
+    window.addEventListener('popstate', e => {
+      console.log(e);
+      // console.log('e.target.location.pathname ' + e.target.location.pathname)
+      // console.log('document.referrer ' + document.referrer)
+    //  updateState(e.target.location.pathname);
+     updateState(e.target.location.pathname, true);
     });
   </script>
 </body>

@@ -67,7 +67,6 @@ class BackgroundImage extends HTMLElement {
 
     // Setup a click listener on <app-drawer> itself.
     this.addEventListener('click', e => {
-      console.log('8282828');
       // Don't toggle the drawer if it's disabled.
       
       if (this.disabled) {

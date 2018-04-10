@@ -36,10 +36,20 @@ class BlogContainer extends HTMLElement {
     return null;
   }
 
+  set src(val) {
+    if (val) {
+      this.setAttribute('src', '');
+    } else {
+      this.removeAttribute('src');
+    }
+  }
+  
+  static get observedAttributes() {
+    return ['src'];
+  }
+
   // Can define constructor arguments if you wish.
   constructor() {
-    // If you define a ctor, always call super() first!
-    // This is specific to CE and required by the spec.
     super();
     let shadowRoot = this.attachShadow({mode: 'open'});
     const template = document.querySelector('#blog-container');
@@ -58,28 +68,27 @@ class BlogContainer extends HTMLElement {
   }
 
   connectedCallback() {
-    const _shadowRoot = this.shadowRoot;
-    let instance;
-    fetch(this.src)
-    .then(function(response) {
-      return response.json().then(function(json) {
-        for (let i=0; i <json.length; i = i+1){
-          instance = new BlogArticle(json[i]);
-          _shadowRoot.querySelector('section').appendChild(instance);
-      }
-    });
-  });
+    // console.log('blog container connected');
+
 }
 
   // Respond to attribute changes.
   attributeChangedCallback(attr, oldValue, newValue) {
     if (attr == 'src') {
-      console.log('blog-container  -  attributeChangedCallback')
+      // console.log('blog-container  -  attributeChangedCallback')
+      const _shadowRoot = this.shadowRoot;
+      let instance;
+      fetch(this.src)
+      .then(function(response) {
+        return response.json().then(function(json) {
+          for (let i=0; i <json.length; i = i+1){
+            instance = new BlogArticle(json[i]);
+            _shadowRoot.querySelector('section').appendChild(instance);
+        }
+      });
+    });
     }
   }
 
-  // toggleDrawer() {
-  //   alert('mycompo!');
-  // }
 }
 customElements.define('blog-container', BlogContainer);

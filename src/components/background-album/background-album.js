@@ -41,11 +41,23 @@ class BackgroundAlbum extends HTMLElement {
     history.state[this.componentId] = {componentName: this.nodeName};
     window.document.nextComponentSerial = this.componentId + 1;
 
+    const interval = this.interval;
+    let imageInstance;
+    if (this.src){
+      fetch(this.src)
+      .then(function(response) {
+        return response.json().then( (json) => {
+          for (let i=0; i <json.urls.length; i = i+1){
+            imageInstance = new BackgroundImage(json.urls[i], interval, json.urls.length, i);
+            shadowRoot.querySelector('div').appendChild(imageInstance);
+          }
+         });
+      });
+    }
+
     // Setup a click listener on <app-drawer> itself.
     this.addEventListener('click', e => {
-      console.log('8282828');
       // Don't toggle the drawer if it's disabled.
-      
       if (this.disabled) {
         return false;
       }
@@ -53,26 +65,13 @@ class BackgroundAlbum extends HTMLElement {
   }
 
   connectedCallback() {
-    const _shadowRoot = this.shadowRoot;
-    const interval = this.interval;
-    let instance;
-    if (this.src){
-      fetch(this.src)
-      .then(function(response) {
-        return response.json().then( (json) => {
-          for (let i=0; i <json.urls.length; i = i+1){
-            instance = new BackgroundImage(json.urls[i], interval, json.urls.length, i);
-            _shadowRoot.querySelector('div').appendChild(instance);
-          }
-         });
-      });
-    }
+
   }
 
   // Respond to attribute changes.
   attributeChangedCallback(attr, oldValue, newValue) {
     if (attr == 'src') {
-      console.log('background-album  -  attributeChangedCallback')
+      console.log('background-album  -  attributeChangedCallback');
     }
   }
 

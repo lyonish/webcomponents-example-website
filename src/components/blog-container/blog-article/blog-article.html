@@ -4,16 +4,26 @@
     <em><span class="author"></span>
     <span class="postdate"></span></em>
     <div class="content"></div>
+    <div class="expander"><a href="javascript:void(0);">expand</a></div>
   </article>
   <style>
   article {
     box-shadow: 0 2px 2px rgba(0,0,0,.29);
-    border-radius: 12px;
-    padding: 12px;
+    border-radius: 36px;
+    padding: 24px 36px;
     margin-bottom: 36px;
   }
   .content {
     margin: 12px 0px;
+  }
+  .expander {
+    text-align: center;
+  }
+  .closed {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 1440px;
+    white-space: nowrap;
   }
   </style>
 </template>
