@@ -22,7 +22,7 @@ class NavMenu extends HTMLElement {
 
   constructor() {
     super();
-    
+
     let shadowRoot = this.attachShadow({mode: 'open'});
     const template = document.querySelector('#nav-menu');
     const instance = template.content.cloneNode(true);
@@ -44,12 +44,6 @@ class NavMenu extends HTMLElement {
         }
       });
     });
-  }
-
-  attributeChangedCallback(attr, oldValue, newValue) {
-    if (attr == 'src') {
-      console.log('nav-menu  -  attributeChangedCallback')
-    }
   }
 }
 

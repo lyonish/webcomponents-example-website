@@ -11,13 +11,12 @@ function add(regex, route){
   routeNames.push(regex);
 }
 
-add('/blog/?.*', 'blog');
-add('/about', 'about');
-add('/', 'home');
+add('\/blog\/\?.*', 'blog');
+add('\/about', 'about');
+add('\/', 'home');
 
 if(typeof window === 'undefined'){
-  // Todo: integrate to express
-  // module.exports = routeNames;
+  module.exports = routeNames;
 }else{
   window.routes = routes;
   window.routeNames = routeNames
