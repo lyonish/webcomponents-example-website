@@ -1,0 +1,1 @@
+class AboutView extends HTMLElement{constructor(e){super();let t=this.attachShadow({mode:"open"});const o=document.querySelector("#about-view").content.cloneNode(!0);t.appendChild(o),this.componentId=componentIdGenerator.next().value,history.state[this.componentId]={componentName:this.nodeName}}}customElements.define("about-view",AboutView);
