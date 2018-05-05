@@ -1,4 +1,4 @@
 {
 "name": ["HOME", "BLOG", "ABOUT"],
-  "route": ["/","/blog", "/about"]
+  "route": ["/webcomponents-exapmle-website/","/webcomponents-exapmle-website/blog", "/webcomponents-exapmle-website/about"]
 }
