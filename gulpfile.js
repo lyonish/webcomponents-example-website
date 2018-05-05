@@ -111,7 +111,7 @@ gulp.task('dev', function(){
 });
 
 // prod build with minifying js
-gulp.task('bulid', function(){
+gulp.task('build', function(){
   runSequence(
     ['minify javascript', 'minify store', 'assets'],
     'minify template tags',
