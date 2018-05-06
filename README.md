@@ -3,7 +3,7 @@ An example website using WebComponents core techs.
 
 [working demo](https://lyonish.github.io/webcomponents-example-website/)
 
-This website is showing how to utilize browser's vanilla webcomponents functionalities to build whole website without any libraries.
+This website is showing how to utilize browser's native webcomponents functionalities to build whole website without any libraries.
 
 To run the project, clone this repository and then,
 
