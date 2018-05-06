@@ -12,10 +12,8 @@ npm install
 npm run dev
 ```
 
-there are `/`, `/blog`, `/about` paths available.
-
-# Notes
-With Github Pages, `server.js` can't be utilized therefore initial access must be just `/`, but when you run this locally, other paths are available.
+### Notes
+With Github Pages, `server.js` can't be utilized therefore initial access must be just `/`, but when you run this locally, other paths `/`, `/blog`, `/about` are acceptable to access.
 
 ### Advice/Contribution
 Feel free to open an issue when you find some improvements.
