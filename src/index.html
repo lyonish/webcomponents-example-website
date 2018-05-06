@@ -16,16 +16,16 @@
   history.replaceState({}, 'initial empty state', window.location.pathname);
 </script> 
 <!-- https://developers.google.com/speed/docs/insights/BlockingJS?hl=ja#InlineJS -->
-<script async src="/components/background-album/background-album.js"></script>
-<script async src="/components/background-album/background-image/background-image.js"></script>
-<script async src="/components/nav-menu/nav-menu.js"></script>
-<script async src="/components/nav-menu/menu-piece/menu-piece.js"></script>
-<script async src="/components/blog-container/blog-container.js"></script>
-<script async src="/components/blog-container/blog-article/blog-article.js"></script>
-<script async src="/views/about/about.js"></script>
-<script async src="/views/home/home.js"></script>
-<script async src="/views/blog/blog.js"></script>
-<script async src="/routes.js"></script>
+<script async src="./components/background-album/background-album.js"></script>
+<script async src="./components/background-album/background-image/background-image.js"></script>
+<script async src="./components/nav-menu/nav-menu.js"></script>
+<script async src="./components/nav-menu/menu-piece/menu-piece.js"></script>
+<script async src="./components/blog-container/blog-container.js"></script>
+<script async src="./components/blog-container/blog-article/blog-article.js"></script>
+<script async src="./views/about/about.js"></script>
+<script async src="./views/home/home.js"></script>
+<script async src="./views/blog/blog.js"></script>
+<script async src="./routes.js"></script>
 <style>
   /* keep this much of page-level style inline  */
   body {
@@ -82,7 +82,7 @@
   <!-- templates for webcomponents. this will be replaced with all <template id="..."> -->
   <templates>
   
-  <nav-menu src="/store/nav-menu.json">
+  <nav-menu src="./store/nav-menu.json">
     <!-- some icon slot..? -->
   </nav-menu>
 
