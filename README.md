@@ -1,11 +1,10 @@
 # Webcomponents Expample Website
-An example website using WebComponents core techs.
+This is an example of utilizing browser native WebComponents functionalities to build whole website without any libraries rather than using it for a single component to be distributed independently.
 
-[working demo](https://lyonish.github.io/webcomponents-example-website/)
+### Demo
+[live demo](https://lyonish.github.io/webcomponents-example-website/)
 
-This website is showing how to utilize browser's native webcomponents functionalities to build whole website without any libraries.
-
-To run the project, clone this repository and then,
+To run the project locally, clone this repository and then,
 
 ```
 npm install
