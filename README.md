@@ -1,4 +1,4 @@
-# Webcomponents Expample Website
+# Webcomponents Example Website
 This is an example of utilizing browser native WebComponents functionalities to build whole website without any libraries rather than using it for a single component to be distributed independently.
 
 ### Demo
